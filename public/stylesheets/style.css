@@ -1,0 +1,28 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#ground{
+ width:500px;
+ height:270px;
+ top:400px;
+ position: absolute;
+}
+#self{
+    width:100px;
+    height:100px;
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+#bg{
+    width:100px;
+    height:100px;
+    position: absolute;
+    top:0px;
+    left:0px;
+}
