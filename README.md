@@ -1,6 +1,8 @@
 Page Explorer
 An app that turns any page (http only on chrome) into a giant interactive chatroom where users can move around the page and interact with other users on the same page.
 
+![screenshot](./screenshot.png)
+
 ```
 npm install
 npm start
