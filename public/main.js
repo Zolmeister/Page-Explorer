@@ -47,7 +47,7 @@ function movePlay(){
             }
         }
     }
-        
+
 }
 function play(){
     playing=true;
@@ -113,7 +113,7 @@ function drawBone(bone, skeleton, ctx){
         tempCanvas.width=distance;
         tempCanvas.height=img.height;
         tempCtx.drawImage(img,0,0, distance, img.height);
-        
+
         var rot=Math.atan2(deltaX,deltaY)*-1+Math.PI/2;
         bone.rotSkin=rot;
         //if(img.name.indexOf("foot")!=-1){
@@ -121,7 +121,7 @@ function drawBone(bone, skeleton, ctx){
        // }else{
             drawRotatedImage(tempCanvas, x, y, rot, ctx);
         //}
-        
+
     }
     if(bone.skin.self){
         if(bone.skin.self.name.indexOf("head")!=-1){
@@ -131,13 +131,13 @@ function drawBone(bone, skeleton, ctx){
         var img=assets[bone.skin.self.name];
         var x=bone.x+bone.skin.self.x;
         var y=bone.y+bone.skin.self.y;
-        
+
         var tempCanvas=document.createElement("canvas");
         var tempCtx=tempCanvas.getContext("2d");
         tempCanvas.width=img.width;
         tempCanvas.height=img.height;
         tempCtx.drawImage(img,0,0, img.width, img.height);
-            
+
         if(bone.skin.self.name.indexOf("hand")!=-1){
                 bone.rotSkin+=1.5;
                 //bone.rot=skeleton[bone.parent].rot
@@ -145,7 +145,7 @@ function drawBone(bone, skeleton, ctx){
             }
             else
                 bone.rotSkin=bone.rot+.5;
-        
+
         drawRotatedImage(tempCanvas, x, y, bone.rotSkin, ctx);
         if(bone.skin.self.name=="head"){
             //var tempCanvas=mergeImg(img,assets["hat"+myHat]);
@@ -163,7 +163,7 @@ function drawBone(bone, skeleton, ctx){
         ctx.strokeRect(x+img.width/2-3,y+img.height/2-3, 6, 6);
         ctx.strokeRect(x-img.width/2-3,y+img.height/2-3, 6, 6);
         ctx.strokeRect(x+img.width/2-3,y-img.height/2-3, 6, 6);*/
-        
+
     }
     for(var i=bone.children.length-1;i>=0;i--){
         var child=skeleton[bone.children[i]];
@@ -173,22 +173,22 @@ function drawBone(bone, skeleton, ctx){
         ctx.lineTo(child.x,child.y);
         if(showBone)
             ctx.stroke();
-        
+
     }
     if(showBone)
         ctx.fillRect(bone.x-4,bone.y-4,8,8);
 }
-function drawRotatedImage(image, x, y, angle, context) { 
-    context.save(); 
+function drawRotatedImage(image, x, y, angle, context) {
+    context.save();
     context.translate(x, y);
     context.rotate(angle);
     try{
         context.drawImage(image, -(image.width/2), -(image.height/2));
     }
     catch(e){
-        
+
     }
-    context.restore(); 
+    context.restore();
 }
 function loadAssets(callback){
     assetCallback=callback;
@@ -199,18 +199,18 @@ function loadAssets(callback){
         assets[asset].onload=function(){
             if(this.name=="head" || this.name.indexOf("hat")!=-1){
                this.height=this.height/4;
-               this.width=this.width/4; 
+               this.width=this.width/4;
             }
             else{
                this.height=this.height/10;
-               this.width=this.width/10; 
+               this.width=this.width/10;
             }
             assetCount++;
             if(assetCount>=assetsList.length){
                 assetCallback();
             }
         }
-        assets[asset].src="http://explorer.zolmeister.com/"+asset+".png";
+        assets[asset].src="http://localhost:3003/"+asset+".png";
     }
 }
 
@@ -279,7 +279,7 @@ function keyactions(){
                     break;
                 }
             }
-            
+
         }
     }
 }
@@ -287,12 +287,12 @@ function keyactions(){
 function drawName(name, me){
     try{
       name=name.substring(0,12);
-      bodyCtx.fillText(name,me.x+me.width/2-name.length*10/4,me.y);  
+      bodyCtx.fillText(name,me.x+me.width/2-name.length*10/4,me.y);
     }
     catch(e){
-        
+
     }
-    
+
 }
 function chat(text, me, name){
     var oldFont=bodyCtx.font
@@ -316,7 +316,7 @@ function drawChatBubbles(){
 
 function anim(timestamp){
     requestAnimFrame(anim);
-    
+
     deltaTime=(timestamp-lastTimestamp)/15;
     if(isNaN(deltaTime)){
         deltaTime=1;
@@ -326,10 +326,10 @@ function anim(timestamp){
         bodyCtx.clearRect(0,0,window.innerWidth,getDocHeight());
     else
         bodyCtx.clearRect(me.x-50,me.y-150,me.width+100,me.height+200);
-    
+
      bodyCtx.clearRect(0,0,currentChat.length*10,10);
     bodyCtx.fillText(currentChat,10,10);
-    
+
     if(!playing && playQueue.length>1){
         play();
     //console.log("playing");
@@ -410,7 +410,7 @@ function anim(timestamp){
             break;
         }
     }*/
-    
+
     var destWidth = sourceWidth/2.5;
     var destHeight = sourceHeight/2.5;
     me.width=destWidth;
@@ -482,11 +482,11 @@ function drawBlocks(ctx, blocks){
 }
 
 window.requestAnimFrame = (function(){
-    return  window.requestAnimationFrame       || 
-    window.webkitRequestAnimationFrame || 
-    window.mozRequestAnimationFrame    || 
-    window.oRequestAnimationFrame      || 
-    window.msRequestAnimationFrame     || 
+    return  window.requestAnimationFrame       ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame    ||
+    window.oRequestAnimationFrame      ||
+    window.msRequestAnimationFrame     ||
     function( callback ){
         window.setTimeout(callback, 1000 / 60);
     };
@@ -513,7 +513,7 @@ function gatherBlocks(){
         var pos=findPos(bl[i]);
         var left=pos[0];
         var top=pos[1];
-        
+
         blocks=blocks.concat([{
             x:left,
             y:top,
@@ -554,28 +554,28 @@ function gatherBlocks(){
 function isVisible(obj)
 {
     if (obj == document) return true
-    
+
     if (!obj) return false
     if (!obj.parentNode) return false
     if (obj.style) {
         if (obj.style.display == 'none') return false
         if (obj.style.visibility == 'hidden') return false
     }
-    
+
     //Try the computed style in a standard way
     if (window.getComputedStyle) {
         var style = window.getComputedStyle(obj, "")
         if (style.display == 'none') return false
         if (style.visibility == 'hidden') return false
     }
-    
+
     //Or get the computed style using IE's silly proprietary way
     var style = obj.currentStyle
     if (style) {
         if (style['display'] == 'none') return false
         if (style['visibility'] == 'hidden') return false
     }
-    
+
     return isVisible(obj.parentNode)
 }
 window.onload=function(){//load assets
@@ -646,6 +646,6 @@ function updatedQueue(){
         socket.emit("updateQueue",s);
     }
     catch(e){
-        
+
     }
 }

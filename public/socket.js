@@ -7,7 +7,7 @@ function drawOthers(){
         others[i].ctx.clearRect(0,0,500,500);
         bodyCtx.clearRect(others[i].me.x-70,others[i].me.y-70,others[i].me.width+140,others[i].me.height+140);
         if(others[i].queue.length<2){
-        
+
         }
     else if(sameFrame(others[i].queue[1],others[i].queue[0])){
         others[i].queue.splice(0,1);
@@ -35,7 +35,7 @@ function drawOthers(){
     }
     others[i].currentFrame++;
     }
-    
+
     for(var i in others){
         drawName(others[i].name, others[i].me);
         var tempHat=myHat;
@@ -120,7 +120,7 @@ function otherPhysics(other){
 }
 
 function init(){
-    socket = io.connect('http://explorer.zolmeister.com/');
+    socket = io.connect('http://localhost:3003/');
     socket.emit('join', window.location.host);
     loadAssets(anim);
     gatherBlocks();

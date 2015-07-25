@@ -12,7 +12,7 @@ document.body.appendChild(c);
 
 function loadScript(name){
     var s=document.createElement("script");
-    s.src="http://explorer.zolmeister.com/"+name+".js";
+    s.src="http://localhost:3003/"+name+".js";
     document.body.appendChild(s);
 }
 loadScript("socket.io/socket.io")
